@@ -14,8 +14,8 @@ import javax.swing.SwingConstants
 class ComponentBuildAndRun {
     val panel = JPanel()
 
-    constructor( app: QuickBuild, projectSelector: ComponentProjectSelector ) {
-        panel.bounds = Rectangle( 15, 60, app.size.width - 15, 45 )
+    constructor( app: QuickBuild, logs: ComponentLogs, projectSelector: ComponentProjectSelector, gradlewArguments: ComponentGradlewArguments ) {
+        panel.bounds = Rectangle( 15, 115, app.size.width - 15, 45 )
         panel.layout = null
 
         val buildAndRunButton = JButton("Build & Run")
@@ -34,7 +34,7 @@ class ComponentBuildAndRun {
                 return@addActionListener
             }
 
-            BuildProcess( app, directory ).run()
+            BuildProcess( app, logs, directory, gradlewArguments.getGradleArguments() ).run()
         }
 
         panel.add(buildAndRunButton)

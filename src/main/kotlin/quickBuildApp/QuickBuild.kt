@@ -3,6 +3,8 @@ package me.jonathankrzeszewski.quickBuildApp
 import com.formdev.flatlaf.FlatDarkLaf
 import me.jonathankrzeszewski.log.Logger
 import me.jonathankrzeszewski.quickBuildApp.components.ComponentBuildAndRun
+import me.jonathankrzeszewski.quickBuildApp.components.ComponentGradlewArguments
+import me.jonathankrzeszewski.quickBuildApp.components.ComponentLogs
 import me.jonathankrzeszewski.quickBuildApp.components.ComponentProjectSelector
 import java.awt.Dimension
 import javax.imageio.ImageIO
@@ -13,7 +15,7 @@ val Logger = Logger("QuickBuild-App")
 
 class QuickBuild {
     private val title = "Quick Builder"
-    val size = Dimension(350, 160)
+    val size = Dimension(350, 400)
 
     val frame = JFrame()
 
@@ -31,10 +33,14 @@ class QuickBuild {
         Logger.log("initializing components")
 
         val projectSelector = ComponentProjectSelector( this )
-        val buildAndRun = ComponentBuildAndRun( this, projectSelector )
+        val gradlewArguments = ComponentGradlewArguments( this )
+        val logs = ComponentLogs( this )
+        val buildAndRun = ComponentBuildAndRun( this, logs, projectSelector, gradlewArguments )
 
         frame.add( projectSelector.panel )
+        frame.add( gradlewArguments.panel )
         frame.add( buildAndRun.panel )
+        frame.add( logs.panel )
     }
 
     private fun initSystem() {

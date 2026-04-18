@@ -1,26 +1,23 @@
 package me.jonathankrzeszewski.quickBuildApp.process
 
 import me.jonathankrzeszewski.quickBuildApp.QuickBuild
+import me.jonathankrzeszewski.quickBuildApp.components.ComponentLogs
 import java.io.File
 import javax.swing.JOptionPane
 
-class BuildProcess( private val app: QuickBuild, private val ideaDirectory: File ) {
-    private val gradleSettings: File = File(ideaDirectory, "settings.gradle.kts")
-
+class BuildProcess( private val app: QuickBuild, private val logs: ComponentLogs, private val ideaDirectory: File, private val gradlewArguments: List<String> ) {
     fun run() {
-        val contents = gradleSettings.readText()
-        val tokens = contents.split("// quick-build=")
-
-        if (tokens.size <= 1) {
-            JOptionPane.showMessageDialog(
+        if (gradlewArguments.isEmpty()) {
+            return JOptionPane.showMessageDialog(
                 app.frame,
-                "Could not find \"// quick-build=BUILD_ARG\" in settings.gradle.kts, add to file and replace BUILD_ARG with your build command!",
-                "Error",
-                JOptionPane.ERROR_MESSAGE
+                "Gradle arguments are required to build and run!",
+                "Warning",
+                JOptionPane.WARNING_MESSAGE
             )
-
-            return
         }
+
+        logs.clear()
+        logs.log(gradlewArguments.joinToString(" "))
 
         /*/
         val buildDirectory = File(ideaDirectory, "build")
