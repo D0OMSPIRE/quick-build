@@ -1,0 +1,4 @@
+TODO
+    - change ui to add logs section
+    - build should be a process that runs and when done
+    then launches a separate terminal that runs the app

@@ -21,4 +21,8 @@ class Logger {
     fun log( message: String ) {
         println("${timestamp()} ${"[$prefix]".col(120, 120, 120)} $message")
     }
+
+    fun todo( message: String ) {
+        println(message.col(90, 200, 90))
+    }
 }

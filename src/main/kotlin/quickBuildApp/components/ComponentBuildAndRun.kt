@@ -1,6 +1,7 @@
 package me.jonathankrzeszewski.quickBuildApp.components
 
 import me.jonathankrzeszewski.quickBuildApp.QuickBuild
+import me.jonathankrzeszewski.quickBuildApp.process.BuildProcess
 import java.awt.Rectangle
 import java.io.File
 import javax.swing.JButton
@@ -33,7 +34,7 @@ class ComponentBuildAndRun {
                 return@addActionListener
             }
 
-            // run process
+            BuildProcess( app, directory ).run()
         }
 
         panel.add(buildAndRunButton)
