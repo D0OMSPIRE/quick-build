@@ -11,7 +11,6 @@ version = jarVersion
 repositories { mavenCentral() }
 dependencies {
     implementation("com.formdev:flatlaf:3.7.1")
-    implementation("ch.qos.logback:logback-classic:1.5.32")
 }
 
 kotlin { jvmToolchain(21) }
