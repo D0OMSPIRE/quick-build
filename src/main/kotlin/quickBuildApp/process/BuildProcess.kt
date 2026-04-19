@@ -23,9 +23,21 @@ class BuildProcess( private val app: QuickBuild, private val logs: ComponentLogs
             )
         }
 
+        val gradleBat = File(ideaDirectory, "gradlew.bat")
+        if (!gradleBat.exists()) {
+            building = false
+
+            return JOptionPane.showMessageDialog(
+                app.frame,
+                "Could not find gradle in \"${ideaDirectory.name}\"!",
+                "Warning",
+                JOptionPane.WARNING_MESSAGE
+            )
+        }
+
         logs.clear()
 
-        val args = listOf("./gradlew.bat") + gradlewArguments
+        val args = listOf(gradleBat.absolutePath) + gradlewArguments
         logs.log("executing $args")
 
         val builder = ProcessBuilder(args)
@@ -117,7 +129,8 @@ class BuildProcess( private val app: QuickBuild, private val logs: ComponentLogs
             )
         }
 
-        val command = "java -jar build/libs/${targetJar.name}"
+        val pathToJar = File(ideaDirectory, "build/libs/${targetJar.name}")
+        val command = "java -jar ${pathToJar.path}"
         logs.log("executing \"$command\"")
 
         building = false
@@ -125,7 +138,6 @@ class BuildProcess( private val app: QuickBuild, private val logs: ComponentLogs
         try {
             Thread.sleep(1000)
             ProcessBuilder("cmd", "/c", "start", "cmd", "/k", command)
-                .directory(ideaDirectory)
                 .start()
         } catch (e: Exception) {
             return JOptionPane.showMessageDialog(

@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "me.jonathankrzeszewski"
-val jarVersion = "0.0.1"
+val jarVersion = "1.0.1"
 version = jarVersion
 
 repositories { mavenCentral() }
