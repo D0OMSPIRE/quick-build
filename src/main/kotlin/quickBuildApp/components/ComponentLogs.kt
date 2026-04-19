@@ -1,20 +1,11 @@
 package me.jonathankrzeszewski.quickBuildApp.components
 
 import me.jonathankrzeszewski.quickBuildApp.QuickBuild
-import org.w3c.dom.css.Rect
 import java.awt.Color
-import java.awt.Font
 import java.awt.Rectangle
-import java.io.File
-import javax.swing.JButton
-import javax.swing.JFileChooser
-import javax.swing.JLabel
-import javax.swing.JOptionPane
 import javax.swing.JPanel
 import javax.swing.JScrollPane
 import javax.swing.JTextArea
-import javax.swing.JTextField
-import javax.swing.SwingConstants
 import javax.swing.border.LineBorder
 
 class ComponentLogs {

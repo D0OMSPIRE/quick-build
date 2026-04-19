@@ -5,11 +5,8 @@ import me.jonathankrzeszewski.quickBuildApp.process.BuildProcess
 import java.awt.Rectangle
 import java.io.File
 import javax.swing.JButton
-import javax.swing.JFileChooser
-import javax.swing.JLabel
 import javax.swing.JOptionPane
 import javax.swing.JPanel
-import javax.swing.SwingConstants
 
 class ComponentBuildAndRun {
     val panel = JPanel()

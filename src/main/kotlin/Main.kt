@@ -8,17 +8,6 @@ import javax.swing.SwingUtilities
 val Logger = Logger("QuickBuild-Main")
 
 fun main() {
-    // TODO LOG
-    val file = object {}.javaClass.getResourceAsStream("/todo.txt")
-    if (file != null) {
-        file.bufferedReader().use { reader ->
-            reader.readLines().forEach { line ->
-                Logger.todo(line)
-            }
-            println("")
-        }
-    }
-
     Logger.log("initializing quick-build app")
 
     SwingUtilities.invokeLater {
