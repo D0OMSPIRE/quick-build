@@ -117,9 +117,10 @@ class BuildProcess( private val app: QuickBuild, private val logs: ComponentLogs
             )
         }
 
-        logs.log(targetJar.name)
-
         val command = "java -jar build/libs/${targetJar.name}"
+        logs.log("executing \"$command\"")
+
+        building = false
 
         try {
             Thread.sleep(1000)
